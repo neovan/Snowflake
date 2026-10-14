@@ -40,5 +40,12 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered ' +name_on_order +'!', icon="✅")
      
-smoothiefroot_response = requests.get("[https://my.smoothiefroot.com/api/fruit/watermelon](https://my.smoothiefroot.com/api/fruit/watermelon)") 
-st.text(smoothiefroot_response)     
+url = "https://my.smoothiefroot.com/api/fruit/watermelon"
+
+try:
+    response = requests.get(url, timeout=10)
+    response.raise_for_status()
+    smoothiefroot_data = response.json()
+    st.json(smoothiefroot_data)
+except requests.RequestException as e:
+    st.error(f"API request failed: {e}")
