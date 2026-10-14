@@ -7,3 +7,4 @@ dependencies:
   - snowflake-snowpark-python
   - pandas
   - plotly
+  - requests
